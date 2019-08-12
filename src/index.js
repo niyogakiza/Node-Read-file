@@ -1,4 +1,20 @@
-var http = require("http");
+const http = require("http");
+const fs = require("fs");
+
+function readModuleFile(path, callback) {
+  try {
+    var filename = require.resolve(path);
+    fs.readFile(filename, "utf8", callback);
+  } catch (e) {
+    callback(e);
+  }
+}
+
+readModuleFile("./message.txt", function(err, words) {
+  console.log(words);
+});
+
+// Write file
 
 //create a server object:
 http
